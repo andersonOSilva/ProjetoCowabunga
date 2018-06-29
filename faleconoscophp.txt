@@ -1,0 +1,48 @@
+<?php
+
+session_start();
+
+$nome=null;
+$telefone=null;
+$celular=null;
+$email=null;
+$home_page=null;
+$link_facebook=null;
+$sexo=null;
+$sugestao=null;
+$informacao_produto=null;
+$profissao=null;
+$chkmasculino=null;
+$chkfeminino=null;
+$botao ="Salvar";
+
+    $conexao = mysql_connect('localhost','root','bcd127');
+
+    mysql_select_db('dbfrajolas');
+
+    if(isset($_POST["btnSalvar"])){
+
+        $nome=$_POST["txtNome"];
+        $telefone=$_POST["txtTelefone"];
+        $celular=$_POST["txtCelular"];
+        $email=$_POST["txtEmail"];
+        $home_page=$_POST["txtPage"];
+        $sexo=$_POST["rdoSexo"];
+        $sugestao=$_POST["txtObs"];
+        $informacao_produto=$_POST["txtInfProduto"];
+        $link_facebook=$_POST["txtPerfil"];
+        $profissao=$_POST["txtProfissao"];
+        
+
+        if($_POST["btnSalvar"]=="Salvar"){
+          $sql = "insert into tbl_fale_conosco (nome,telefone,celular,email,home_page,sexo,sugestao,informacao_produto,profissao,link_facebook)  values('".$nome."','".$telefone."','".$celular."','".$email."','".$home_page."','".$sexo."','".$sugestao."','".$informacao_produto."','".$profissao."','".$link_facebook."')";
+        }
+
+
+//        echo($sql);
+        mysql_query($sql);
+
+        header('location:faleConosco.php');
+
+    }
+?>
